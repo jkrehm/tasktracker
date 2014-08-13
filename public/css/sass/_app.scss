@@ -1,0 +1,38 @@
+.timers {
+    text-align: center;
+}
+
+$timer-control-size: 3em;
+
+.timer-control {
+    display: inline-block;
+    height: $timer-control-size;
+    transition: transform 0.3s;
+    width: $timer-control-size;
+}
+.start-timer,
+.stop-timer {
+    font-size: $timer-control-size;
+    transform-origin: center;
+}
+.start-timer {
+    @include icon(play);
+}
+.stop-timer {
+    @include icon(stop);
+}
+.time-ticker {
+    display: inline-block;
+    font-family: Gill Sans Extrabold, sans-serif;
+    font-size: 3em;
+}
+.add-timer {
+    color: #00a000;
+    font-size: 3em;
+    @include icon(plus);
+}
+.remove-timer {
+    color: #ff0000;
+    font-size: 2em;
+    @include icon(remove);
+}

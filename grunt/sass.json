@@ -1,0 +1,33 @@
+{
+    "_documentation": "https://github.com/gruntjs/grunt-contrib-sass",
+    "options": {
+        "precision": 10,
+        "unixNewlines": true
+    },
+    "dev": {
+        "options": {
+            "lineNumbers": true,
+            "style": "expanded"
+        },
+        "files": [{
+            "expand": true,
+            "cwd": "public/css/sass",
+            "src": "**/*.scss",
+            "dest": "public/css",
+            "ext": ".css"
+        }]
+    },
+    "dist": {
+        "options": {
+            "sourcemap": true,
+            "style": "compact"
+        },
+        "files": [{
+            "expand": true,
+            "cwd": "public/css/sass",
+            "src": "**/*.scss",
+            "dest": "public/css",
+            "ext": ".css"
+        }]
+    }
+}

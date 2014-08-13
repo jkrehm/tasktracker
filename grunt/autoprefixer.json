@@ -1,0 +1,14 @@
+{
+    "_documentation": "https://github.com/nDmitry/grunt-autoprefixer",
+    "dev": {
+        "expand": true,
+        "src": "public/css/**/*.css"
+    },
+    "dist": {
+        "options": {
+            "map": true
+        },
+        "expand": true,
+        "src": "public/css/**/*.css"
+    }
+}

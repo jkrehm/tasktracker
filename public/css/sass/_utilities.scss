@@ -1,0 +1,11 @@
+.spin-right {
+    transform: rotate(360deg);
+}
+.spin-left {
+    transform: rotate(-360deg);
+}
+
+@mixin icon($name) {
+    @extend %ico;
+    @extend .ico-#{$name};
+}

@@ -1,0 +1,18 @@
+{
+    "_documentation": "https://github.com/gruntjs/grunt-contrib-uglify",
+    "options": {
+        "mangle": false,
+        "preserveComments": "some",
+        "sourceMap": true
+    },
+    "bower": {
+        "files": [
+            {
+                "public/vendor/backbone/backbone.min.js"      : ["public/vendor/backbone/backbone.js"],
+                "public/vendor/requirejs/require.min.js"      : ["public/vendor/requirejs/require.js"],
+                "public/vendor/requirejs/require-text.min.js" : ["public/vendor/requirejs-plugins/lib/text.js"],
+                "public/vendor/requirejs/require-json.min.js" : ["public/vendor/requirejs-plugins/src/json.js"]
+            }
+        ]
+    }
+}

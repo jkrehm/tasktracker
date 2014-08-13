@@ -1,0 +1,15 @@
+{
+    "default": [
+        "watch"
+    ],
+    "bower": [
+        "newer:copy:cssAsScss",
+        "newer:uglify:bower",
+        "newer:sass:dev",
+        "newer:autoprefixer:dev"
+    ],
+    "dist": [
+        "sass:dist",
+        "autoprefixer:dist"
+    ]
+}
