@@ -1,15 +1,15 @@
-define(['jquery', 'lodash', 'app/models/task', 'app/views/task'], function ($, _, TaskModel, TaskView) {
+define(['jquery', 'lodash', 'app/collections/tasks', 'app/views/tasks'], function ($, _, Tasks, TasksView) {
 
     'use strict';
 
-    var task = new TaskModel();
-    var taskView = new TaskView({
-        model: task
+    var tasks = new Tasks();
+    var tasksView = new TasksView({
+        collection: tasks
     });
 
-    taskView.on('removeTimer', function (e) {
-        taskView.destroy();
-    });
+    $('.container').prepend(tasksView.render().el);
 
-    $('.timers').append(taskView.render().el);
+    $('.add-timer').click(function () {
+        tasks.add({});
+    });
 });

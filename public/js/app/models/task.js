@@ -2,9 +2,8 @@ define(['backbone', 'lodash'], function (Backbone, _) {
 
     'use strict';
 
-    var TaskModel = Backbone.Model.extend({
+    var Task = Backbone.Model.extend({
         defaults: {
-            id            : _.uniqueId('task_'),
             running       : false,
             time          : 0,
             timerInterval : 0
@@ -17,6 +16,7 @@ define(['backbone', 'lodash'], function (Backbone, _) {
         startTimer: function () {
             var self = this;
 
+            // Update the time every second
             var timerInterval = setInterval(function() {
                 var time = self.get('time') + 1;
 
@@ -49,9 +49,10 @@ define(['backbone', 'lodash'], function (Backbone, _) {
                 seconds = '0' + seconds;
             }
 
+            // Output the time in HH:MM:SS format
             return hours + ':' + minutes + ':' + seconds;
         }
     });
 
-    return TaskModel;
+    return Task;
 });

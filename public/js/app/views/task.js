@@ -5,7 +5,7 @@ define(['marionette', 'lodash', 'text!templates/task.html'], function (Marionett
     _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 
     var TaskView = Marionette.ItemView.extend({
-        tagName: 'div',
+        className: 'timer',
         template: _.template(taskTmpl),
 
         ui: {
@@ -14,8 +14,9 @@ define(['marionette', 'lodash', 'text!templates/task.html'], function (Marionett
         },
 
         events: {
-            'click .start-timer': 'startTimer',
-            'click .stop-timer': 'stopTimer',
+            'click .start-timer'        : 'startTimer',
+            'click .stop-timer'         : 'stopTimer',
+            'keyup input, change input' : 'syncInputs'
         },
 
         triggers: {
@@ -24,6 +25,7 @@ define(['marionette', 'lodash', 'text!templates/task.html'], function (Marionett
 
         initialize: function () {
             this.listenTo(this.model, 'change:time', this.displayTime);
+            this.listenTo(this.model, 'change:running', this.toggleTimer);
         },
 
         onRender: function () {
@@ -34,28 +36,48 @@ define(['marionette', 'lodash', 'text!templates/task.html'], function (Marionett
             this.$('.time-ticker').text(this.model.timeString());
         },
 
+        toggleTimer: function () {
+
+            // Toggle the start/stop icons
+            if (this.model.get('running')) {
+
+                var $start = this.ui.control.find('.start-timer');
+
+                this.ui.control.addClass('spin-right');
+
+                setTimeout(function() {
+                    $start.toggleClass('start-timer stop-timer');
+                }, 150);
+
+            } else {
+
+                var $stop = this.ui.control.find('.stop-timer');
+
+                this.ui.control.removeClass('spin-right');
+
+                setTimeout(function() {
+                    $stop.toggleClass('start-timer stop-timer');
+                }, 150);
+
+            }
+        },
+
         startTimer: function () {
-            var $start = this.ui.control.find('.start-timer');
-
-            this.ui.control.addClass('spin-right');
-
-            setTimeout(function() {
-                $start.toggleClass('start-timer stop-timer');
-            }, 150);
-
             this.model.startTimer();
         },
 
-        stopTimer: function (e) {
-            var $stop = this.ui.control.find('.stop-timer');
-
-            this.ui.control.removeClass('spin-right');
-
-            setTimeout(function() {
-                $stop.toggleClass('start-timer stop-timer');
-            }, 150);
-
+        stopTimer: function () {
             this.model.stopTimer();
+        },
+
+        syncInputs: function (e) {
+
+            // Update model with form input values
+            var $input = $(e.target);
+            var name = $input.attr('name');
+            var val = $input.val();
+
+            this.model.set(name, val);
         }
     });
 

@@ -1,38 +1,90 @@
-.timers {
-    text-align: center;
-}
-
 $timer-control-size: 3em;
 
+.timers {
+    text-align: center;
+
+}
+.timer {
+    border: 2px solid #000;
+    border-radius: 3px;
+    display: inline-block;
+    height: 70px;
+    margin: 5px 0;
+    width: 600px;
+
+    &:first-child {
+        margin-top: 15px;
+    }
+    &:last-child {
+        margin-bottom: 15px;
+    }
+
+    > * {
+        margin: 0 10px;
+        vertical-align: middle;
+    }
+}
+
+.timer-descr {
+    @extend .form-control;
+    border-color: #000;
+    border-radius: 0;
+    border-width: 2px;
+    height: $timer-control-size;
+}
 .timer-control {
     display: inline-block;
     height: $timer-control-size;
     transition: transform 0.3s;
     width: $timer-control-size;
+
+    > span {
+        transition: color 0.15s;
+    }
 }
+
 .start-timer,
 .stop-timer {
+    cursor: pointer;
     font-size: $timer-control-size;
     transform-origin: center;
 }
 .start-timer {
+    color: #00a000;
     @include icon(play);
 }
 .stop-timer {
+    color: #ff0000;
     @include icon(stop);
 }
+
 .time-ticker {
     display: inline-block;
     font-family: Gill Sans Extrabold, sans-serif;
     font-size: 3em;
 }
+
 .add-timer {
-    color: #00a000;
+    color: #0b6daf;
+    cursor: pointer;
     font-size: 3em;
     @include icon(plus);
+
+    &::before {
+        border: 5px solid;
+        border-radius: 1em;
+        padding: 7px;
+    }
 }
+
 .remove-timer {
     color: #ff0000;
-    font-size: 2em;
+    cursor: pointer;
+    font-size: 1.5em;
     @include icon(remove);
+}
+
+.button-wrapper {
+    margin: 10px 0;
+    text-align: center;
 }
