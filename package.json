@@ -1,4 +1,5 @@
 {
+  "name": "TaskTracker",
   "author": "Jonathan Rehm <jkrehm@gmail.com>",
   "license": "MIT",
   "devDependencies": {

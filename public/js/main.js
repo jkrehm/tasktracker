@@ -1,15 +1,23 @@
-define(['jquery', 'lodash', 'app/collections/tasks', 'app/views/tasks'], function ($, _, Tasks, TasksView) {
+define([
+    'jquery',
+    'dropbox',
+    'app',
+    'json!config.json'
+], function ($, Dropbox, App, cfg) {
 
     'use strict';
 
-    var tasks = new Tasks();
-    var tasksView = new TasksView({
-        collection: tasks
-    });
+    var dropbox = new Dropbox.Client({key : cfg['dropbox-api']});
 
-    $('.container').prepend(tasksView.render().el);
+    $(function () {
 
-    $('.add-timer').click(function () {
-        tasks.add({});
+        dropbox.authenticate({}, function authError(error) {
+
+            if (error) {
+                return; // @todo
+            }
+
+            App(dropbox);
+        });
     });
 });

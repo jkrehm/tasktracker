@@ -1,4 +1,4 @@
-define(['marionette', 'lodash', 'text!templates/task.html'], function (Marionette, _, taskTmpl) {
+define(['marionette', 'underscore', 'text!templates/task.html'], function (Marionette, _, taskTmpl) {
 
     'use strict';
 

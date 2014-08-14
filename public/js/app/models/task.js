@@ -1,14 +1,32 @@
-define(['backbone', 'lodash'], function (Backbone, _) {
+define(['backbone', 'underscore'], function (Backbone, _) {
 
     'use strict';
 
     var Task = Backbone.Model.extend({
         defaults: {
+            descr         : '',
             running       : false,
             time          : 0,
             timerInterval : 0
         },
+/*
+        attrWhiteList: ['descr', 'time'],
 
+        save: function (attrs, options) {
+
+            options || (options = {});
+
+            if (this.attrWhiteList) {
+                whitelisted = _.pick(this.attributes, this.attrWhiteList);
+            } else {
+                whitelisted = this.attributes;
+            }
+
+            options.data = JSON.stringify(whitelisted);
+
+
+        },
+*/
         resetTimer: function () {
             this.set('time', 0);
         },

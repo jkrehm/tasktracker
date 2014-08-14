@@ -26,11 +26,19 @@ $timer-control-size: 3em;
 }
 
 .timer-descr {
-    @extend .form-control;
-    border-color: #000;
-    border-radius: 0;
-    border-width: 2px;
-    height: $timer-control-size;
+    background: none;
+    border: none;
+    color: #555555;
+    font-size: 16px;
+    height: 65px;
+    min-width: 250px;
+
+    &:focus {
+        outline: none;
+    }
+    &::placeholder {
+        color: #777777;
+    }
 }
 .timer-control {
     display: inline-block;
@@ -67,7 +75,9 @@ $timer-control-size: 3em;
 .add-timer {
     color: #0b6daf;
     cursor: pointer;
+    display: inline-block;
     font-size: 3em;
+    margin-top: 10px;
     @include icon(plus);
 
     &::before {

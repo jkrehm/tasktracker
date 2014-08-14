@@ -6,10 +6,18 @@ require.config({
             '../vendor/backbone/backbone.min',
             '../vendor/backbone/backbone'
         ],
+        'backbone.dropbox' : [
+            // '../vendor/backbone.dropboxDatastore/backbone.dropboxDatastore.min',
+            '../vendor/backbone.dropboxDatastore/backbone.dropboxDatastore'
+        ],
         'bootstrap' : [
             '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min',
             '../vendor/bootstrap/dist/bootstrap.min',
             '../vendor/bootstrap/dist/bootstrap'
+        ],
+        'dropbox' : [
+            '//www.dropbox.com/static/api/dropbox-datastores-1.1-latest',
+            'vendor/dropbox-datastores-1.1.0.min'
         ],
         'jquery' : [
             '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min',
@@ -20,11 +28,6 @@ require.config({
             '../vendor/requirejs/require-json.min',
             '../vendor/require-plugins/src/json'
         ],
-        'lodash' : [
-            '//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min',
-            '../vendor/lodash/dist/lodash.min',
-            '../vendor/lodash/dist/lodash'
-        ],
         'marionette' : [
             '../vendor/backbone.marionette/lib/backbone.marionette.min',
             '../vendor/backbone.marionette/lib/backbone.marionette'
@@ -33,19 +36,23 @@ require.config({
             '../vendor/requirejs/require-text.min',
             '../vendor/require-plugins/lib/text'
         ],
+        'underscore' : [
+            '//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min',
+            '../vendor/lodash/dist/lodash.min',
+            '../vendor/lodash/dist/lodash'
+        ],
     },
     shim: {
-        'backbone' : {
-            deps: ['jquery', 'lodash']
+        'bootstrap' : {
+            deps: ['jquery']
+        },
+        'dropbox' : {
+            exports: 'Dropbox'
         },
         'marionette' : {
             deps: ['backbone']
         }
     }
-});
-
-define('underscore', function () {
-    return require('lodash');
 });
 
 require(['main']);
