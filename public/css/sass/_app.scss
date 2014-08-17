@@ -73,18 +73,15 @@ $timer-control-size: 3em;
 }
 
 .add-timer {
+    border: 5px solid;
+    border-radius: 1em;
     color: #0b6daf;
     cursor: pointer;
     display: inline-block;
     font-size: 3em;
     margin-top: 10px;
+    padding: 7px;
     @include icon(plus);
-
-    &::before {
-        border: 5px solid;
-        border-radius: 1em;
-        padding: 7px;
-    }
 }
 
 .remove-timer {

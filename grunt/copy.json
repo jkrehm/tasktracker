@@ -34,6 +34,13 @@
             },
             {
                 "expand": true,
+                "cwd": "public/fonts",
+                "src": ["*"],
+                "dest": "dist/fonts",
+                "filter": "isFile"
+            },
+            {
+                "expand": true,
                 "cwd": "public/vendor/bootstrap/dist/fonts",
                 "src": ["*"],
                 "dest": "dist/vendor/bootstrap/dist/fonts",
