@@ -9,24 +9,15 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             time          : 0,
             timerInterval : 0
         },
-/*
-        attrWhiteList: ['descr', 'time'],
 
-        save: function (attrs, options) {
-
-            options || (options = {});
-
-            if (this.attrWhiteList) {
-                whitelisted = _.pick(this.attributes, this.attrWhiteList);
-            } else {
-                whitelisted = this.attributes;
-            }
-
-            options.data = JSON.stringify(whitelisted);
-
-
+        initialize: function () {
+            this.on('change:running', function (model, value) {
+                if (!value) {
+                    this.stopTimer();
+                }
+            });
         },
-*/
+
         resetTimer: function () {
             this.set('time', 0);
         },

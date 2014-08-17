@@ -4,7 +4,11 @@
 </label>
 
 <div class="timer-control">
-    <span class="start-timer"></span>
+    <% if (running) { %>
+        <span class="stop-timer"></span>
+    <% } else { %>
+        <span class="start-timer"></span>
+    <% } %>
 </div>
 
 <div class="time-ticker"></div>

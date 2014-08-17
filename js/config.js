@@ -7,7 +7,7 @@ require.config({
             '../vendor/backbone/backbone'
         ],
         'backbone.dropbox' : [
-            // '../vendor/backbone.dropboxDatastore/backbone.dropboxDatastore.min',
+            '../vendor/backbone.dropboxDatastore/backbone.dropboxDatastore.min',
             '../vendor/backbone.dropboxDatastore/backbone.dropboxDatastore'
         ],
         'bootstrap' : [
