@@ -9,7 +9,10 @@
         "newer:autoprefixer:dev"
     ],
     "dist": [
-        "sass:dist",
-        "autoprefixer:dist"
+        "newer:copy:dist",
+        "newer:sass:dist",
+        "newer:autoprefixer:dist",
+        "newer:sass:dist",
+        "vendor:dist"
     ]
 }

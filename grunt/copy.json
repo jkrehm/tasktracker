@@ -11,5 +11,34 @@
                 "ext": ".scss"
             }
         ]
+    },
+    "dist": {
+        "files": [
+            {
+                "expand": true,
+                "cwd": "public",
+                "src": ["*.html", "*.txt"],
+                "dest": "dist",
+                "filter": "isFile"
+            },
+            {
+                "src": "public/vendor/requirejs/require.min.js",
+                "dest": "dist/vendor/requirejs/require.min.js"
+            },
+            {
+                "expand": true,
+                "cwd": "public/js",
+                "src": ["**/*"],
+                "dest": "dist/js",
+                "filter": "isFile"
+            },
+            {
+                "expand": true,
+                "cwd": "public/vendor/bootstrap/dist/fonts",
+                "src": ["*"],
+                "dest": "dist/vendor/bootstrap/dist/fonts",
+                "filter": "isFile"
+            }
+        ]
     }
 }

@@ -2,5 +2,6 @@
 node_modules
 public/css/main.css
 public/vendor
+dist
 *.sublime-project
 *.sublime-workspace

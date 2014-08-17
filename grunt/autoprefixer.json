@@ -9,6 +9,6 @@
             "map": true
         },
         "expand": true,
-        "src": "public/css/**/*.css"
+        "src": "dist/css/**/*.css"
     }
 }
