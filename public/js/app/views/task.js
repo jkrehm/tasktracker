@@ -26,6 +26,7 @@ define(['marionette', 'underscore', 'text!templates/task.html'], function (Mario
         initialize: function () {
             this.listenTo(this.model, 'change:time', this.displayTime);
             this.listenTo(this.model, 'change:running', this.toggleTimer);
+            this.listenTo(this.model, 'change', this.syncFields);
         },
 
         onRender: function () {
@@ -68,6 +69,14 @@ define(['marionette', 'underscore', 'text!templates/task.html'], function (Mario
 
         stopTimer: function () {
             this.model.stopTimer();
+        },
+
+        syncFields: function (model) {
+
+            // Update form input values with model changes
+            _.each(model.changed, function (value, name) {
+                this.$('[name="'+name+'"]').val(value);
+            }, this);
         },
 
         syncInputs: function (e) {
