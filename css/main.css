@@ -2036,7 +2036,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .stop-timer { color: #ff0000; }
 
-.time-ticker { display: inline-block; font-family: Gill Sans Extrabold, sans-serif; font-size: 3em; }
+.time-ticker { border: none; display: inline-block; font-family: Gill Sans Extrabold, sans-serif; font-size: 3em; max-width: 165px; }
 
 .add-timer { border: 5px solid; border-radius: 1em; color: #0b6daf; cursor: pointer; display: inline-block; font-size: 3em; margin-top: 10px; padding: 7px; }
 

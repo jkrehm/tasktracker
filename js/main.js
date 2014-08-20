@@ -17,7 +17,7 @@ define([
                 return; // @todo
             }
 
-            App(dropbox);
+            new App(dropbox);
         });
     });
 });
