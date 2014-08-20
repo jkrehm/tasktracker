@@ -16,25 +16,17 @@ define(['marionette', 'underscore', 'text!templates/task.html'], function (Mario
         events: {
             'click .start-timer'        : 'startTimer',
             'click .stop-timer'         : 'stopTimer',
+            'click @ui.remove'          : 'removeTimer',
             'keyup input, change input' : 'syncInputs'
         },
 
-        triggers: {
-            'click @ui.remove': 'removeTimer'
-        },
-
-        initialize: function () {
-            this.listenTo(this.model, 'change:time', this.displayTime);
-            this.listenTo(this.model, 'change:running', this.toggleTimer);
-            this.listenTo(this.model, 'change', this.syncFields);
+        modelEvents: {
+            'change:running' : 'toggleTimer',
+            'change'         : 'syncFields'
         },
 
         onRender: function () {
-            this.displayTime();
-        },
-
-        displayTime: function () {
-            this.$('.time-ticker').text(this.model.timeString());
+            this.$('.time-ticker').val(this.model.timeString());
         },
 
         toggleTimer: function () {
@@ -71,23 +63,41 @@ define(['marionette', 'underscore', 'text!templates/task.html'], function (Mario
             this.model.stopTimer();
         },
 
-        syncFields: function (model) {
+        removeTimer: function () {
+            // @todo Add modal confirmation dialog
+
+            this.trigger('removeTimer');
+        },
+
+        syncFields: function (model, options) {
+
+            // Don't sync fields if the event was triggered by the current view
+            if (options.triggeredBy === this) {
+                return;
+            }
 
             // Update form input values with model changes
             _.each(model.changed, function (value, name) {
+
+                // Treat time field differently
+                if (name === 'time') {
+                    value = this.model.timeString();
+                }
+
                 this.$('[name="'+name+'"]').val(value);
             }, this);
         },
 
-        syncInputs: function (e) {
+        syncInputs: _.debounce(function (e) {
 
             // Update model with form input values
             var $input = $(e.target);
             var name = $input.attr('name');
             var val = $input.val();
 
-            this.model.set(name, val);
-        }
+            this.model.set(name, val, {triggeredBy : this});
+
+        }, 1000)
     });
 
     return TaskView;

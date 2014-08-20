@@ -67,9 +67,11 @@ $timer-control-size: 3em;
 }
 
 .time-ticker {
+    border: none;
     display: inline-block;
     font-family: Gill Sans Extrabold, sans-serif;
     font-size: 3em;
+    max-width: 165px;
 }
 
 .add-timer {

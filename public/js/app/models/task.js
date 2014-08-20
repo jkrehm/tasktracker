@@ -1,4 +1,4 @@
-define(['backbone', 'underscore'], function (Backbone, _) {
+define(['backbone'], function (Backbone) {
 
     'use strict';
 
@@ -20,6 +20,31 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         resetTimer: function () {
             this.set('time', 0);
+        },
+
+        set: function (key, val, options) {
+
+            // If time changed and it's a string, then user manually updated
+            // so we need to convert it from hh:mm:ss to seconds
+            // @todo Handle bad input
+            if (key === 'time' && typeof val === 'string') {
+                var time = val.split(':');
+                val = 0;
+
+                if (time.length === 3) {
+                    val += parseInt(time[0], 10) * 60 * 60; // Hours
+                    time.shift();
+                }
+
+                if (time.length === 2) {
+                    val += parseInt(time[0], 10) * 60; // Minutes
+                    time.shift();
+                }
+
+                val += parseInt(time[0], 10); // Seconds
+            }
+
+            Backbone.Model.prototype.set.call(this, key, val, options);
         },
 
         startTimer: function () {
