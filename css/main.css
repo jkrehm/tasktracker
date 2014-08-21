@@ -2016,6 +2016,8 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .spin-left { transform: rotate(-360deg); }
 
+input:focus { outline: none; }
+
 .timers { text-align: center; }
 
 .timer { border: 2px solid #000; border-radius: 3px; display: inline-block; height: 70px; margin: 5px 0; width: 600px; }
@@ -2024,7 +2026,6 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 .timer > * { margin: 0 10px; vertical-align: middle; }
 
 .timer-descr { background: none; border: none; color: #555555; font-size: 16px; height: 65px; min-width: 250px; }
-.timer-descr:focus { outline: none; }
 .timer-descr::placeholder { color: #777777; }
 
 .timer-control { display: inline-block; height: 3em; transition: transform 0.3s; width: 3em; }
