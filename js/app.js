@@ -1,9 +1,13 @@
-define(['jquery', 'backbone', 'app/collections/tasks', 'app/views/tasks', 'backbone.dropbox'],
-function ($, Backbone, Tasks, TasksView) {
+define(['jquery', 'backbone', 'marionette', 'app/collections/tasks', 'app/views/tasks', 'backbone.dropbox'],
+function ($, Backbone, Marionette, Tasks, TasksView) {
 
-    function App (dropbox) {
+    'use strict';
 
-        Backbone.DropboxDatastore.client = dropbox;
+    var App = new Marionette.Application();
+
+    App.addInitializer(function (options) {
+
+        Backbone.DropboxDatastore.client = options.dropbox;
 
         var tasks = new Tasks();
         var tasksView = new TasksView({
@@ -15,7 +19,8 @@ function ($, Backbone, Tasks, TasksView) {
         $('.add-timer').click(function () {
             tasks.add({});
         });
-    }
+
+    });
 
     return App;
 });

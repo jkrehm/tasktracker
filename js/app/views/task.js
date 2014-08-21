@@ -1,4 +1,4 @@
-define(['marionette', 'underscore', 'text!templates/task.html'], function (Marionette, _, taskTmpl) {
+define(['marionette', 'underscore', 'text!templates/task.html', 'app/views/remove'], function (Marionette, _, taskTmpl, RemoveView) {
 
     'use strict';
 
@@ -64,9 +64,17 @@ define(['marionette', 'underscore', 'text!templates/task.html'], function (Mario
         },
 
         removeTimer: function () {
-            // @todo Add modal confirmation dialog
 
-            this.trigger('removeTimer');
+            // Are you sure you want to delete this task?
+            var removeView = new RemoveView({model : this.model});
+
+            $('body').prepend(removeView.render().el);
+            removeView.$el.modal('show');
+
+            // Listen for removal trigger, and pass it along
+            removeView.on('removeTimer', function () {
+                this.trigger('removeTimer');
+            }, this);
         },
 
         syncFields: function (model, options) {
@@ -85,6 +93,7 @@ define(['marionette', 'underscore', 'text!templates/task.html'], function (Mario
                 }
 
                 this.$('[name="'+name+'"]').val(value);
+
             }, this);
         },
 
