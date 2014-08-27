@@ -1,7 +1,6 @@
 {
     "_documentation": "https://github.com/gruntjs/grunt-contrib-sass",
     "options": {
-        "precision": 10,
         "unixNewlines": true
     },
     "dev": {
@@ -19,7 +18,6 @@
     },
     "dist": {
         "options": {
-            "sourcemap": true,
             "style": "compact"
         },
         "files": [{
