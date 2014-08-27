@@ -1,4 +1,4 @@
-define(['backbone'], function (Backbone) {
+define(['backbone', 'underscore'], function (Backbone, _) {
 
     'use strict';
 
@@ -10,6 +10,8 @@ define(['backbone'], function (Backbone) {
             time          : 0,
             timerInterval : 0
         },
+
+        whitelist: ['descr', 'id', 'running', 'time'],
 
         initialize: function () {
             this.on('change:running', function (model, value) {
@@ -86,6 +88,23 @@ define(['backbone'], function (Backbone) {
 
             // Output the time in HH:MM:SS format
             return hours + ':' + minutes + ':' + seconds;
+        },
+
+        toJSON: function () {
+            var attrs = {};
+
+            _.forEach(this.attributes, function (value, key) {
+
+                if (this.whitelist.indexOf(key) > -1) {
+                    attrs[key] = value;
+                }
+            }, this);
+
+            if (typeof attrs.id === 'undefined') {
+                attrs.id = _.uniqueId('temp-');
+            }
+
+            return attrs;
         }
     });
 
