@@ -1,3 +1,8 @@
+<div class="tab-left">
+    <input type="checkbox" class="input-tick" id="checkbox-{{ id }}" name="selected">
+    <label for="checkbox-{{ id }}"></label>
+</div>
+
 <label>
     <div class="sr-only">Task Description</div>
     <input class="timer-descr" name="descr" placeholder="Task Description" value="{{ descr }}">
@@ -13,4 +18,6 @@
 
 <input class="time-ticker" name="time" value="{{ time }}">
 
-<span class="remove-timer"></span>
+<div class="tab-right">
+    <span class="remove-timer"></span>
+</div>

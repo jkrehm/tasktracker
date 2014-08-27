@@ -6,6 +6,7 @@ define(['backbone'], function (Backbone) {
         defaults: {
             descr         : '',
             running       : false,
+            selected      : false,
             time          : 0,
             timerInterval : 0
         },

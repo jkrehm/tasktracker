@@ -1,15 +1,20 @@
-$timer-control-size: 3em;
+input:focus {
+    outline: none;
+}
+label {
+    margin-bottom: 0;
+}
 
 .timers {
     text-align: center;
-
 }
 .timer {
     border: 2px solid #000;
     border-radius: 3px;
     display: inline-block;
-    height: 70px;
+    height: $height-task;
     margin: 5px 0;
+    position: relative;
     width: 600px;
 
     &:first-child {
@@ -33,18 +38,15 @@ $timer-control-size: 3em;
     height: 65px;
     min-width: 250px;
 
-    &:focus {
-        outline: none;
-    }
     &::placeholder {
         color: #777777;
     }
 }
 .timer-control {
     display: inline-block;
-    height: $timer-control-size;
+    height: $size-timer-control;
     transition: transform 0.3s;
-    width: $timer-control-size;
+    width: $size-timer-control;
 
     > span {
         transition: color 0.15s;
@@ -54,7 +56,7 @@ $timer-control-size: 3em;
 .start-timer,
 .stop-timer {
     cursor: pointer;
-    font-size: $timer-control-size;
+    font-size: $size-timer-control;
     transform-origin: center;
 }
 .start-timer {
@@ -74,26 +76,116 @@ $timer-control-size: 3em;
     max-width: 165px;
 }
 
+.add-timer,
+.remove-timers {
+    display: inline-block;
+    font-size: 3em;
+    margin-top: 10px;
+}
+
 .add-timer {
     border: 5px solid;
     border-radius: 1em;
     color: #0b6daf;
     cursor: pointer;
-    display: inline-block;
-    font-size: 3em;
-    margin-top: 10px;
     padding: 7px;
     @include icon(plus);
 }
 
-.remove-timer {
+.remove-timer,
+.remove-timers {
     color: #ff0000;
     cursor: pointer;
-    font-size: 1.5em;
     @include icon(remove);
+}
+.remove-timer {
+    font-size: 1.5em;
+    position: absolute;
 }
 
 .button-wrapper {
     margin: 10px 0;
     text-align: center;
+}
+
+// Left/right tabs
+.tab-left,
+.tab-right {
+    height: $height-task;
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: -2px;
+    width: $width-tab;
+
+    .input-tick + label,
+    .remove-timer {
+        left: ($width-tab - $size-checkbox) / 2;
+        top: 50%;
+    }
+    .input-tick + label {
+        margin-top: $size-checkbox / -2;
+    }
+    .remove-timer {
+        margin-top: -0.5em;
+    }
+}
+.tab-left {
+    left: $width-tab * -1;
+}
+.tab-right {
+    right: $width-tab * -1;
+}
+
+// Checkboxes/radios
+.input-tick {
+    position: absolute;
+    left: -999em;
+
+    &[disabled] + label {
+        @include opacity(0.3);
+    }
+
+    &[type="checkbox"] {
+
+        &:checked + label::after {
+            border: 3px solid #000;
+            border: {
+                right: none;
+                top: none;
+            }
+            content: "";
+            height: 10px;
+            left: 4px;
+            position: absolute;
+            top: 4px;
+            width: 14px;
+            transform: rotate(-55deg);
+        }
+    }
+
+    &[type="radio"] {
+
+        & + label::before {
+           border-radius: 100%;
+        }
+
+        &:checked + label::before {
+            background-image: radial-gradient(circle at center, color(primary) .6ex, #fff .7ex);
+        }
+    }
+
+    & + label {
+        cursor: pointer;
+        height: $size-checkbox;
+        position: absolute;
+
+        &::before {
+            border: 2px solid #000;
+            content: "";
+            display: inline-block;
+            height: $size-checkbox;
+            width: $size-checkbox;
+        }
+    }
 }
