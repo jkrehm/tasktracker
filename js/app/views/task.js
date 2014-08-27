@@ -9,15 +9,17 @@ define(['marionette', 'underscore', 'text!templates/task.html', 'app/views/remov
         template: _.template(taskTmpl),
 
         ui: {
-            control: '.timer-control',
-            remove: '.remove-timer',
+            control : '.timer-control',
+            remove  : '.remove-timer',
+            select  : '.input-tick',
         },
 
         events: {
-            'click .start-timer'        : 'startTimer',
-            'click .stop-timer'         : 'stopTimer',
-            'click @ui.remove'          : 'removeTimer',
-            'keyup input, change input' : 'syncInputs'
+            'click .start-timer' : 'startTimer',
+            'click .stop-timer'  : 'stopTimer',
+            'click @ui.remove'   : 'removeTimer',
+            'keyup input'        : 'syncInputs',
+            'change input'       : 'syncInputs',
         },
 
         modelEvents: {
@@ -97,16 +99,22 @@ define(['marionette', 'underscore', 'text!templates/task.html', 'app/views/remov
             }, this);
         },
 
-        syncInputs: _.debounce(function (e) {
+        syncInputs: function (e) {
 
             // Update model with form input values
             var $input = $(e.target);
             var name = $input.attr('name');
-            var val = $input.val();
+            var val;
+
+            if (['checkbox', 'radio'].indexOf($input.attr('type')) > -1) {
+                val = $input.prop('checked');
+            } else {
+                val = $input.val();
+            }
 
             this.model.set(name, val, {triggeredBy : this});
 
-        }, 1000)
+        }
     });
 
     return TaskView;

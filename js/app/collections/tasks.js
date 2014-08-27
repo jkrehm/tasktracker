@@ -30,7 +30,18 @@ define(['backbone', 'app/models/task', 'backbone.dropbox'], function (Backbone, 
 
             // Save changes
             this.on('change', _.debounce(function (model) {
-                model.save();
+
+                var shouldSaveChange = false;
+                _.each(model.changed, function (val, key) {
+                    if (model.whitelist.indexOf(key) > -1) {
+                        shouldSaveChange = true;
+                    }
+                });
+
+                if (shouldSaveChange) {
+                    model.save();
+                }
+
             }, 500));
 
             // Remove the task
