@@ -21,6 +21,16 @@ module.exports = function (grunt) {
                     src  : 'public/' + file[1] + '.js',
                     dest : 'dist/' + file[1] + '.js'
                 });
+
+                copy.files.push({
+                    src  : 'public/' + file[1] + '.js.map',
+                    dest : 'dist/' + file[1] + '.js.map'
+                });
+
+                copy.files.push({
+                    src  : 'public/' + file[1] + '.map',
+                    dest : 'dist/' + file[1] + '.map'
+                });
             }
         }
 

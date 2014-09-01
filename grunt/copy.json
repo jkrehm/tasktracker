@@ -17,19 +17,15 @@
             {
                 "expand": true,
                 "cwd": "public",
-                "src": ["*.html", "*.txt"],
+                "src": ["*.html", "*.json", "*.txt"],
                 "dest": "dist",
                 "filter": "isFile"
             },
             {
-                "src": "public/vendor/requirejs/require.min.js",
-                "dest": "dist/vendor/requirejs/require.min.js"
-            },
-            {
                 "expand": true,
-                "cwd": "public/js",
-                "src": ["**/*"],
-                "dest": "dist/js",
+                "cwd": "public/vendor/requirejs",
+                "src": ["require.min.*"],
+                "dest": "dist/vendor/requirejs",
                 "filter": "isFile"
             },
             {

@@ -14,5 +14,16 @@
                 "public/vendor/requirejs/require-json.min.js" : ["public/vendor/requirejs-plugins/src/json.js"]
             }
         ]
+    },
+    "dist": {
+        "files": [
+            {
+                "expand": true,
+                "cwd": "public/js",
+                "src": ["**/*.js"],
+                "dest": "dist/js",
+                "filter": "isFile"
+            }
+        ]
     }
 }

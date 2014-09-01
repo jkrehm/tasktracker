@@ -9,6 +9,7 @@
         "newer:autoprefixer:dev"
     ],
     "dist": [
+        "uglify:dist",
         "copy:dist",
         "sass:dist",
         "autoprefixer:dist",
