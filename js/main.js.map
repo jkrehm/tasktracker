@@ -1,0 +1,1 @@
+{"version":3,"file":"main.js","sources":["../../public/js/main.js"],"names":["define","$","Dropbox","App","cfg","dropbox","Client","key","authenticate","error","start"],"mappings":"AAAAA,QACI,SACA,UACA,MACA,oBACD,SAAUC,EAAGC,QAASC,IAAKC,KAE1B,YAEA,IAAIC,SAAU,GAAIH,SAAQI,QAAQC,IAAMH,IAAI,gBAE5CH,GAAE,WAEEI,QAAQG,gBAAiB,SAAmBC,OAEpCA,OAIJN,IAAIO,OAAOL,QAAUA"}
